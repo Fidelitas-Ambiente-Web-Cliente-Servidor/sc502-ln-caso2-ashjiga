@@ -1,36 +1,33 @@
 $(function () {
-    let formRegister = $("#formRegister");
-    const urlBase = "index.php"
+    const urlBase = "index.php";
 
-    formRegister.on("submit", function (event) {
-        event.preventDefault();
-        let username = $("#username");
-        let password = $("#password");
+    $("#formRegister").on("submit", function (e) {
+        e.preventDefault();
 
-        if (username.val() === "" || password.val() === "") {
-            alert("Debe completar todos los campos");
-        } else {
-            $.ajax({
-                url: urlBase,
-                type: 'POST',
-                data: $(this).serialize() + '&option=register',
-                dataType: 'json',
-                success: function (response) {
-                    if (response.response === '00') {
-                        window.location.href = 'index.php?page=talleres';
-                    } else {
-                        $('#mensaje').text(response.message).css('color', 'red').show();
-                    }
-                },
-                error: function () {
-                    $('#mensaje').text('Error de conexión').css('color', 'red').show();
-                }
-            });
+        const username = $("#username").val();
+        const password = $("#password").val();
 
+        if (!username || !password) {
+            alert("Completa todos los campos");
+            return;
         }
 
-
-    })
-
-
-})
+        $.ajax({
+            url: urlBase,
+            type: "POST",
+            data: { username: username, password: password, option: "register" },
+            dataType: "json",
+            success: function (res) {
+                if (res.response === "00") {
+                    alert("Usuario creado correctamente");
+                    window.location.href = "index.php?page=login";
+                } else {
+                    alert(res.message || "Error al registrar");
+                }
+            },
+            error: function () {
+                alert("Error de conexión");
+            }
+        });
+    });
+});

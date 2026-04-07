@@ -1,43 +1,35 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 
 <head>
-
+    <meta charset="UTF-8">
     <title>Login</title>
-
-    <link
-        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-        rel="stylesheet">
+    <link rel="stylesheet" href="public/css/style.css">
     <script src="public/js/jquery-4.0.0.min.js"></script>
     <script src="public/js/auth.js"></script>
 </head>
 
-<body class="container mt-5">
+<body>
+    <div class="auth-wrapper">
+        <div class="auth-card">
+            <h2>Iniciar Sesión</h2>
 
-    <h2>Login</h2>
+            <form id="formLogin">
+                <div class="form-group">
+                    <label>Usuario</label>
+                    <input class="form-control" name="username" id="username">
+                </div>
+                <div class="form-group">
+                    <label>Contraseña</label>
+                    <input type="password" class="form-control" name="password" id="password">
+                </div>
+                <button type="submit" class="btn btn-primary btn-full">Ingresar</button>
+            </form>
 
-    <form id="formLogin">
-        <input
-            class="form-control mb-2"
-            name="username"
-            id="username"
-            placeholder="Usuario">
-
-        <input
-            type="password"
-            class="form-control mb-2"
-            name="password"
-            id="password"
-            placeholder="Contraseña">
-
-        <button type="submit" class="btn btn-primary">
-            Ingresar
-        </button>
-        <a href="index.php?page=registro" class="btn btn-secondary">Registrarse</a>
-    </form>
-
-
-
+            <p class="auth-link"><a href="index.php?page=registro">Registrarse</a></p>
+        </div>
+    </div>
+    <div id="mensaje"></div>
 </body>
 
 </html>
